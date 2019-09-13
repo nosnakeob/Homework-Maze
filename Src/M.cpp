@@ -87,8 +87,10 @@ void Maze::findWaysN()
         if (now == end) //到达出口   ==重载
         {
             cout << "Find a way:";
-            for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end(); it++)
+            for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end() - 1; it++)
                 cout << "(" << it->x << "," << it->y << ") -> ";
+            cout << paths.end()->x << paths.end()->y << endl;
+
             is_found = 1;
             break;
         }
@@ -98,9 +100,9 @@ void Maze::findWaysN()
             update.x = now.x + direction[i][0];
             update.y = now.y + direction[i][1];
 
-            if (!is_visited[update.y][update.x])
+            if (!is_visited[update.x][update.y])
             {
-                is_visited[now.y][now.x] = 1;
+                is_visited[now.x][now.y] = 1;
                 stack.push(update);
             }
         }
@@ -112,6 +114,4 @@ void Maze::findWaysN()
 
 void Maze::findWaysR()
 {
-
-
 }
