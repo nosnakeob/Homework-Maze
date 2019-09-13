@@ -1,0 +1,17 @@
+[
+{
+  "directory": "E:/Work/Program/code/c_c++/lesson/Maze/build",
+  "command": "C:\\LLVM\\bin\\x86_64-w64-mingw32-g++.exe   @CMakeFiles/cmake-test.dir/includes_CXX.rsp -g   -std=gnu++17 -o CMakeFiles\\cmake-test.dir\\Src\\LS.cpp.obj -c E:\\Work\\Program\\code\\c_c++\\lesson\\Maze\\Src\\LS.cpp",
+  "file": "E:/Work/Program/code/c_c++/lesson/Maze/Src/LS.cpp"
+},
+{
+  "directory": "E:/Work/Program/code/c_c++/lesson/Maze/build",
+  "command": "C:\\LLVM\\bin\\x86_64-w64-mingw32-g++.exe   @CMakeFiles/cmake-test.dir/includes_CXX.rsp -g   -std=gnu++17 -o CMakeFiles\\cmake-test.dir\\Src\\M.cpp.obj -c E:\\Work\\Program\\code\\c_c++\\lesson\\Maze\\Src\\M.cpp",
+  "file": "E:/Work/Program/code/c_c++/lesson/Maze/Src/M.cpp"
+},
+{
+  "directory": "E:/Work/Program/code/c_c++/lesson/Maze/build",
+  "command": "C:\\LLVM\\bin\\x86_64-w64-mingw32-g++.exe   @CMakeFiles/cmake-test.dir/includes_CXX.rsp -g   -std=gnu++17 -o CMakeFiles\\cmake-test.dir\\Src\\main.cpp.obj -c E:\\Work\\Program\\code\\c_c++\\lesson\\Maze\\Src\\main.cpp",
+  "file": "E:/Work/Program/code/c_c++/lesson/Maze/Src/main.cpp"
+}
+]
