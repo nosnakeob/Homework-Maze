@@ -56,7 +56,7 @@ void Maze::draw()
         {
             cout.width(3);
 
-            cout << (is_block[i][j] ? "0" : "");
+            cout << (is_block[i][j] ? "X" : "");
         }
         cout << endl;
     }
