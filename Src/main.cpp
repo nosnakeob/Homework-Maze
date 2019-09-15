@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     maze.create();
 
-    maze.draw();
+    cout << endl;
 
     maze.findWaysN();
 

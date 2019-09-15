@@ -29,5 +29,4 @@ public:
     bool isEmpty();            // 判空
 };
 
-
 #endif

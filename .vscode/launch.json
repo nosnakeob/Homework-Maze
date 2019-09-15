@@ -1,7 +1,6 @@
 {
     "version": "0.2.0",
-    "configurations": [
-        {
+    "configurations": [{
         "name": "Launch CMake-built program",
         "type": "cppdbg",
         "request": "launch",
