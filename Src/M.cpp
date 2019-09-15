@@ -12,10 +12,10 @@ Maze::Maze()
     m = n = 0;
     for (int i = 0; i < MAXSIZE; i++)
         for (int j = 0; j < MAXSIZE; j++)
-            maze[i][j] = map[i][j] = 1;
+            map[i][j] = draft[i][j] = 1;
 }
 
-Maze::~Maze()
+Maze::~Maze() //?
 {
 }
 
@@ -27,21 +27,21 @@ void Maze::create()
     cout << "Please enter the maze's picture (0:O, 1:X):" << endl;
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
-            cin >> maze[i][j]; //bug 合法性判断
+            cin >> map[i][j]; //bug 合法性判断
 
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
-            map[i][j] = maze[i][j];
+            draft[i][j] = map[i][j];
 
     cout << "Complete!!!\n"
          << endl;
 
-    draw("maze", maze);
+    draw("maze");
 }
 
-void Maze::draw(string str, int picture[][MAXSIZE])
+void Maze::draw(string str)
 {
-    cout << "Let me draw the " << str << ":" << endl;
+    cout << "\nLet me draw the " << str << ":" << endl;
 
     cout << "   ";
     for (int i = 1; i <= m; i++)
@@ -59,7 +59,7 @@ void Maze::draw(string str, int picture[][MAXSIZE])
         for (int j = 1; j <= m; j++)
         {
             char c;
-            switch (picture[i][j])
+            switch (map[i][j])
             {
             case 0: //通路
                 c = ' ';
@@ -94,13 +94,22 @@ bool Maze::enterCoordinate(string str, Coordinate &coo)
     if (coo.x <= 0 || coo.x > n || coo.y <= 0 || coo.y > m) //不合法
         return 0;
 
-    if (maze[coo.x][coo.y] == 1) //堵路
+    if (map[coo.x][coo.y] == 1) //堵路
         return 0;
 
     return 1;
 }
 
-void Maze::findWaysN() //岔路bug
+void Maze::outputWay(Node *p)
+{
+    if (!p)
+        return;
+
+    outputWay(p->next);
+    cout << "(" << p->x << "," << p->y << ") -> ";
+}
+
+void Maze::findWaysN()
 {
     Coordinate begin, end, now, update;
     LinkStack stack;
@@ -122,18 +131,16 @@ void Maze::findWaysN() //岔路bug
     while (!stack.isEmpty())
     {
         now = stack.top();
+        draft[now.x][now.y] = 1; //标记已走坐标
 
         if (now == end)
         {
-            for (Node *p = stack.begin(); p; p = p->next) //标记路径
+            for (Node *p = stack.end(); p; p = p->next) //标记路径
                 map[p->x][p->y] = 2;
 
-            draw("map", map);
+            draw("map");
 
-            for (Node *p = stack.begin(); p->next; p = p->next)
-            {
-                cout << "(" << p->x << "," << p->y << ") -> ";
-            }
+            outputWay(stack.end()->next);
             cout << "(" << stack.end()->x << "," << stack.end()->y << ")" << endl;
 
             is_found_way = 1;
@@ -146,9 +153,8 @@ void Maze::findWaysN() //岔路bug
             update.x = now.x + direction[i][0];
             update.y = now.y + direction[i][1];
 
-            if (!map[update.x][update.y])//能走
+            if (!draft[update.x][update.y]) //能走
             {
-                map[now.x][now.y] = 1;
                 stack.push(update);
 
                 is_found_direction = 1;
@@ -213,7 +219,7 @@ void Maze::findWaysR()
         for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end(); it++)
             map[it->x][it->y] = 2;
 
-        draw("map", map);
+        draw("map");
 
         for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end() - 1; it++)
             cout << "(" << it->x << "," << it->y << ") -> ";

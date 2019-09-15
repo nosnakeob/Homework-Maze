@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    freopen("test.in", "r", stdin);
+    // freopen("test.in", "r", stdin);
 
     Maze maze;
 
@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
 
     cout << endl;
 
-    maze.findWaysR();
+    maze.findWaysN();
 
-    fclose(stdin);
+    // fclose(stdin);
     system("pause");
 
     return 0;

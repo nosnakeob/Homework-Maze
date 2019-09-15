@@ -27,8 +27,7 @@ public:
     void pop();                //出栈
     Coordinate top();          //取顶值
     bool isEmpty();            // 判空
-    Node *begin();       //取底指针
-    Node *end();         //取顶指针
+    Node *end();               //取顶指针
 };
 
 #endif

@@ -14,12 +14,6 @@ LS.hpp
 string
 -
 
-E:/Work/Program/code/c_c++/lesson/Maze/Src/LS.cpp
-LS.hpp
-E:/Work/Program/code/c_c++/lesson/Maze/Src/LS.hpp
-iostream
--
-
 E:/Work/Program/code/c_c++/lesson/Maze/Src/M.cpp
 M.hpp
 E:/Work/Program/code/c_c++/lesson/Maze/Src/M.hpp
@@ -31,12 +25,4 @@ vector
 -
 string
 -
-
-E:/Work/Program/code/c_c++/lesson/Maze/Src/main.cpp
-iostream
--
-cstdlib
--
-M.hpp
-E:/Work/Program/code/c_c++/lesson/Maze/Src/M.hpp
 
