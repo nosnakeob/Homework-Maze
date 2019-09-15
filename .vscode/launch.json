@@ -11,6 +11,7 @@
         "cwd": "${workspaceFolder}",
         "environment": [],
         "externalConsole": false,
+        // "avoidWindowsConsoleRedirection": true,
         "internalConsoleOptions": "neverOpen",
         "MIMode": "gdb",
         "miDebuggerPath": "gdb.exe",

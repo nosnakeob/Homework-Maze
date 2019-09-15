@@ -1,13 +1,14 @@
 #include <iostream>
-
+#include <cstdio>
+#include <cstdlib>
 using namespace std;
-
-int main(int argc, char *argv[])
+int main(void)
 {
-    for (int i = 0; i < 10; i++)
-    {
-        cout.width(5);
-        cout << i << endl;
-    }
+    char a = '¡ö';
+
+    cout << "¡ö"<< endl;
+
+    system("pause");
+
     return 0;
 }

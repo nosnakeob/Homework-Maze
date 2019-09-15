@@ -5,13 +5,13 @@
 
 using namespace std;
 
-// ---è¿·å®«éƒ¨åˆ†---
+// ---ÃÔ¹¬²¿·Ö---
 Maze::Maze()
 {
     m = n = 0;
     for (int i = 0; i < MAXSIZE; i++)
         for (int j = 0; j < MAXSIZE; j++)
-            is_block[i][j] = is_visited[i][j] = 1;
+            maze[i][j] = map[i][j] = 1;
 }
 
 Maze::~Maze()
@@ -26,16 +26,44 @@ void Maze::create()
     cout << "Please enter the maze's picture (0:Accessible,1:Blocked):" << endl;
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
-            cin >> is_block[i][j];
+            cin >> maze[i][j];
 
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
-            is_visited[i][j] = is_block[i][j];
+            map[i][j] = maze[i][j];
 
     cout << "Complete!!!" << endl;
 }
 
-void Maze::draw()
+/* void Maze::draw(int picture[][MAXSIZE])
+{
+    cout << "Let me draw:" << endl;
+
+    cout << "   ";
+    for (int i = 1; i <= m; i++)
+    {
+        cout.width(3);
+        cout << i;
+    }
+
+    cout << endl;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout.width(3);
+        cout << i;
+        for (int j = 1; j <= m; j++)
+        {
+            cout.width(3);
+
+            cout << (picture[i][j] ? "X" : "");
+        }
+        cout << endl;
+    }
+}
+ */
+
+void Maze::drawMaze()
 {
     cout << "Let me draw the maze:" << endl;
 
@@ -56,7 +84,53 @@ void Maze::draw()
         {
             cout.width(3);
 
-            cout << (is_block[i][j] ? "X" : "");
+            cout << (maze[i][j] ? "X" : "");
+        }
+        cout << endl;
+    }
+}
+
+// ---ÕÒÂ·---
+int direction[][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; //4¸ö·½Ïò
+vector<Coordinate> paths;                                //´æ´¢Â·¾¶
+bool is_found = 0;
+
+void Maze::leadWay()
+{
+    cout << "Let me lead the way:" << endl;
+    cout << "   ";
+    for (int i = 1; i <= m; i++)
+    {
+        cout.width(3);
+        cout << i;
+    }
+
+    cout << endl;
+
+    for (int i = 1; i <= n; i++)
+    {
+        cout.width(3);
+        cout << i;
+        for (int j = 1; j <= m; j++)
+        {
+            char c;
+            switch (map[i][j])
+            {
+            case 0:
+                c = '?';
+                break;
+            case 1:
+                c = ' ';
+                break;
+            case 2:
+                c = '?';
+                break;
+            default:
+                break;
+            }
+
+            cout.width(3);
+            cout << c;
         }
         cout << endl;
     }
@@ -64,11 +138,8 @@ void Maze::draw()
 
 void Maze::findWaysN()
 {
-    Coordinate begin, end, now, update; //å…¥å£ã€å‡ºå£ã€å½“å‰ã€æ›´æ–°åæ ‡
-    vector<Coordinate> paths;           //å­˜å‚¨è·¯å¾„
+    Coordinate begin, end, now, update; //Èë¿Ú¡¢³ö¿Ú¡¢µ±Ç°¡¢¸üĞÂ×ø±ê
     LinkStack stack;
-    bool is_found(0);
-    int direction[][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; //4ä¸ªæ–¹å‘
 
     cout << "Please enter the begining and end (x y|0<x,y<" << MAXSIZE - 5 << ")" << endl;
     cout << "begining:";
@@ -81,28 +152,36 @@ void Maze::findWaysN()
 
     while (!stack.isEmpty())
     {
-        paths.push_back(now = stack.top()); //è®°å½•å½“å‰ä½ç½®
+        paths.push_back(now = stack.top()); //¼ÇÂ¼µ±Ç°Î»ÖÃ
         stack.pop();
 
-        if (now == end) //åˆ°è¾¾å‡ºå£   ==é‡è½½
+        if (now == end) //µ½´ï³ö¿Ú   ==ÖØÔØ
         {
             cout << "Find a way:";
+            for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end(); it++)
+                map[it->x][it->y] = 2;
+
+            leadWay();
+
             for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end() - 1; it++)
+            {
                 cout << "(" << it->x << "," << it->y << ") -> ";
+            }
+
             cout << paths.end()->x << paths.end()->y << endl;
 
             is_found = 1;
             break;
         }
 
-        for (int i = 0; i < 4; i++) //é€‰æ‹©æ–¹å‘
+        for (int i = 0; i < 4; i++) //Ñ¡Ôñ·½Ïò
         {
             update.x = now.x + direction[i][0];
             update.y = now.y + direction[i][1];
 
-            if (!is_visited[update.x][update.y])
+            if (!map[update.x][update.y])
             {
-                is_visited[now.x][now.y] = 1;
+                map[now.x][now.y] = 1;
                 stack.push(update);
             }
         }
@@ -112,6 +191,59 @@ void Maze::findWaysN()
         cout << "Fail to find a way..." << endl;
 }
 
+void Maze::DFS(Coordinate now, Coordinate end)
+{
+    paths.push_back(now);
+
+    if (now == end)
+    {
+        is_found = 1;
+        return;
+    }
+
+    if (map[now.x][now.y])
+    {
+        paths.pop_back();
+        return;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        Coordinate update;
+        update.x = now.x + direction[i][0];
+        update.y = now.y + direction[i][1];
+        map[update.x][update.y] = 1;
+        DFS(update, end);
+    }
+}
+
 void Maze::findWaysR()
 {
+    Coordinate begin, end; //Èë¿Ú¡¢³ö¿Ú¡¢µ±Ç°¡¢¸üĞÂ×ø±ê
+
+    cout << "Please enter the begining and end (x y|0<x,y<" << MAXSIZE - 5 << ")" << endl;
+    cout << "begining:";
+    cin >> begin.x >> begin.y;
+    cout << "end:";
+    cin >> end.x >> end.y;
+    cout << "Working..." << endl;
+
+    DFS(begin, end);
+
+    if (is_found)
+    {
+        cout << "Find a way:";
+        for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end(); it++)
+            map[it->x][it->y] = 2;
+        leadWay();
+
+        for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end() - 1; it++)
+            cout << "(" << it->x << "," << it->y << ") -> ";
+
+        cout << paths.end()->x << paths.end()->y << endl;
+    }
+    else
+    {
+        cout << "Fail to find a way..." << endl;
+    }
 }
