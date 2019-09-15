@@ -12,7 +12,7 @@ bool Coordinate::operator==(Coordinate a)
 // ---链栈部分---
 LinkStack::LinkStack()
 {
-    stack_top = nullptr;
+    stack_top = stack_base = nullptr;
 }
 
 LinkStack::~LinkStack()
@@ -36,9 +36,12 @@ void LinkStack::push(Coordinate loc)
     p->next = stack_top;
 
     stack_top = p;
+
+    if (stack_base == nullptr)
+        stack_base = p;
 }
 
-void LinkStack::pop()
+void LinkStack::pop() //空bug
 {
     Node *p = stack_top->next;
     delete stack_top;
@@ -56,4 +59,14 @@ Coordinate LinkStack::top()
 bool LinkStack::isEmpty()
 {
     return stack_top == nullptr;
+}
+
+Node *LinkStack::begin()
+{
+    return stack_base;
+}
+
+Node *LinkStack::end()
+{
+    return stack_top;
 }

@@ -18,7 +18,7 @@ struct Node //链栈结点
 class LinkStack //链栈
 {
 private:
-    Node *stack_top;
+    Node *stack_base, *stack_top; //base用来遍历
 
 public:
     LinkStack();               //初始化
@@ -27,6 +27,8 @@ public:
     void pop();                //出栈
     Coordinate top();          //取顶值
     bool isEmpty();            // 判空
+    Node *begin();       //取底指针
+    Node *end();         //取顶指针
 };
 
 #endif
