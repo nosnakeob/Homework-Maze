@@ -3,13 +3,13 @@
 
 using namespace std;
 
-// ---×ø±ê²¿·Ö---
+// ---åæ ‡éƒ¨åˆ†---
 bool Coordinate::operator==(Coordinate a)
 {
     return (this->x == a.x && this->y == a.y);
 }
 
-// ---Á´Õ»²¿·Ö---
+// ---é“¾æ ˆéƒ¨åˆ†---
 LinkStack::LinkStack()
 {
     stack_top = nullptr;
@@ -19,7 +19,7 @@ LinkStack::~LinkStack()
 {
     Node *p = nullptr;
 
-    while (stack_top != nullptr) //Ñ­»·ÊÍ·ÅÕ»½Úµã¿Õ¼ä
+    while (stack_top != nullptr) //å¾ªçŽ¯é‡Šæ”¾æ ˆèŠ‚ç‚¹ç©ºé—´
     {
         p = stack_top->next;
         delete stack_top;

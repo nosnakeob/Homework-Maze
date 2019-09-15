@@ -1,8 +1,8 @@
 {
     "configurations": [
         {
-            "name": "MinGW64",
-            "intelliSenseMode": "gcc-x64",
+            "name": "Clang",
+            "intelliSenseMode": "clang-x64",
             "includePath": [
                 "${workspaceFolder}/Inc/"
             ],

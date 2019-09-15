@@ -8,6 +8,7 @@ CMakeFiles/cmake-test.dir/Src/M.cpp.obj: ../Inc/LS.hpp
 CMakeFiles/cmake-test.dir/Src/M.cpp.obj: ../Inc/M.hpp
 CMakeFiles/cmake-test.dir/Src/M.cpp.obj: ../Src/M.cpp
 
+CMakeFiles/cmake-test.dir/Src/main.cpp.obj: ../Inc/LS.hpp
 CMakeFiles/cmake-test.dir/Src/main.cpp.obj: ../Inc/M.hpp
 CMakeFiles/cmake-test.dir/Src/main.cpp.obj: ../Src/main.cpp
 

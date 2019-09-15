@@ -1,32 +1,32 @@
 #ifndef LS_H
 #define LS_H
 
-class Coordinate //×ø±ê
+class Coordinate //åæ ‡
 {
 public:
     int x, y;
 
-    bool operator==(Coordinate a); //ÖØÔØ==
+    bool operator==(Coordinate a); //é‡è½½==
 };
 
-struct Node //Á´Õ»½áµã
+struct Node //é“¾æ ˆç»“ç‚¹
 {
     int x, y;
     Node *next;
 };
 
-class LinkStack //Á´Õ»
+class LinkStack //é“¾æ ˆ
 {
 private:
     Node *stack_top;
 
 public:
-    LinkStack();               //³õÊ¼»¯
-    ~LinkStack();              //Ïú»Ù
-    void push(Coordinate loc); //ÈëÕ»
-    void pop();                //³öÕ»
-    Coordinate top();          //È¡¶¥Öµ
-    bool isEmpty();            // ÅĞ¿Õ
+    LinkStack();               //åˆå§‹åŒ–
+    ~LinkStack();              //é”€æ¯
+    void push(Coordinate loc); //å…¥æ ˆ
+    void pop();                //å‡ºæ ˆ
+    Coordinate top();          //å–é¡¶å€¼
+    bool isEmpty();            // åˆ¤ç©º
 };
 
 #endif
