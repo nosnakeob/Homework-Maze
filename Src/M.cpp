@@ -27,7 +27,7 @@ void Maze::create()
     cout << "Please enter the maze's picture (0:O, 1:X):" << endl;
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
-            cin >> map[i][j]; //bug 合法性判断
+            cin >> map[i][j]; //bug:合法性判断
 
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
@@ -83,9 +83,9 @@ void Maze::draw(string str)
 
 // ---找路---
 int direction[][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; //4方向
-vector<Coordinate> paths;                                //存路径
 bool is_found_way = 0, is_found_direction = 0;
 
+//===非递归===
 bool Maze::enterCoordinate(string str, Coordinate &coo)
 {
     cout << "Please enter the " << str << "(0 < x <= " << n << ", 0 < y <= " << m << "):";
@@ -169,9 +169,13 @@ void Maze::findWaysN()
         cout << "Fail to find a way..." << endl;
 }
 
+//===递归===
+vector<Coordinate> paths; //存路径
+
 void Maze::DFS(Coordinate now, Coordinate end)
 {
-    paths.push_back(now); //记录现在坐标
+    if (draft[now.x][now.y] == 1) //堵路
+        return;
 
     if (now == end) //到终点
     {
@@ -179,19 +183,25 @@ void Maze::DFS(Coordinate now, Coordinate end)
         return;
     }
 
-    if (map[now.x][now.y]) //此路不通
+    if (is_found_way) //找到路后不必遍历其他路径
     {
-        paths.pop_back();
         return;
     }
 
-    for (int i = 0; i < 4; i++)
+    draft[now.x][now.y] = 1; //堵住路
+
+    Coordinate update;
+    for (int i = 0; i < 4; i++) //找路
     {
-        Coordinate update;
         update.x = now.x + direction[i][0];
         update.y = now.y + direction[i][1];
-        map[now.x][now.y] = 1; //堵住路
+        if (!is_found_way)
+            paths.push_back(update);
+
         DFS(update, end);
+
+        if (!is_found_way)
+            paths.pop_back();
     }
 }
 
@@ -211,11 +221,11 @@ void Maze::findWaysR()
              << endl;
     }
 
+    paths.push_back(begin);
     DFS(begin, end);
 
     if (is_found_way)
     {
-        cout << "Find a way:";
         for (vector<Coordinate>::iterator it = paths.begin(); it != paths.end(); it++)
             map[it->x][it->y] = 2;
 

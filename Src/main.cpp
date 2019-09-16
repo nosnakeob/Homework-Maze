@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     cout << endl;
 
-    maze.findWaysN();
+    maze.findWaysR();
 
     // fclose(stdin);
     system("pause");
