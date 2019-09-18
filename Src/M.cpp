@@ -21,13 +21,34 @@ Maze::~Maze() //?
 
 void Maze::create()
 {
-    cout << "Please enter the maze's length(m), width(n) (m, n < " << MAXSIZE - 5 << "):";
-    cin >> m >> n;
+    while (1)
+    {
+        cout << "Please enter the maze's length(m), width(n) (0 < m, n < " << MAXSIZE - 5 << "):";
+        cin >> m >> n;
+        if (m <= 0 || m >= MAXSIZE - 5 || n <= 0 || n >= MAXSIZE - 5)
+        {
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n'); //清除输入缓冲区的当前行
+            cout << "Invalid number! Please enter the line again.\n"
+                 << endl;
+        }
+        else
+            break;
+    }
 
     cout << "Please enter the maze's picture (0:O, 1:X):" << endl;
-    for (int i = 1; i <= n; i++)
+
+    for (int i = 1; i <= n; i++) //
         for (int j = 1; j <= m; j++)
-            cin >> map[i][j]; //bug:合法性判断
+        {
+            cin >> map[i][j];
+            if (map[i][j] != 1 && map[i][j] != 0) //输入其他东西
+            {
+                cin.ignore(numeric_limits<std::streamsize>::max(), '\n'); //清除输入缓冲区的当前行
+                cout << "Invalid number! Please enter the line again.\n"
+                     << endl;
+                j = 0;
+            }
+        }
 
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)

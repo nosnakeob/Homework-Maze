@@ -18,7 +18,7 @@ struct Node //链栈结点
 class LinkStack //链栈
 {
 private:
-    Node *stack_base, *stack_top; //base用来遍历
+    Node  *stack_top;
 
 public:
     LinkStack();               //初始化
