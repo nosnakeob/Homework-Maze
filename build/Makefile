@@ -47,10 +47,10 @@ RM = C:\CMake\bin\cmake.exe -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = E:\Work\Program\code\c_c++\lesson\Maze
+CMAKE_SOURCE_DIR = W:\code\c_c++\lesson\Maze
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = E:\Work\Program\code\c_c++\lesson\Maze\build
+CMAKE_BINARY_DIR = W:\code\c_c++\lesson\Maze\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Work\Program\code\c_c++\lesson\Maze\build\CMakeFiles E:\Work\Program\code\c_c++\lesson\Maze\build\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start W:\code\c_c++\lesson\Maze\build\CMakeFiles W:\code\c_c++\lesson\Maze\build\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start E:\Work\Program\code\c_c++\lesson\Maze\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start W:\code\c_c++\lesson\Maze\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target

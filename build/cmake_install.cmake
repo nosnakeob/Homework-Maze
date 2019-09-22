@@ -1,4 +1,4 @@
-# Install script for directory: E:/Work/Program/code/c_c++/lesson/Maze
+# Install script for directory: W:/code/c_c++/lesson/Maze
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Work/Program/code/c_c++/lesson/Maze/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "W:/code/c_c++/lesson/Maze/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

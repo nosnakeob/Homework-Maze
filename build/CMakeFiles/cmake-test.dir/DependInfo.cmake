@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "E:/Work/Program/code/c_c++/lesson/Maze/Src/LS.cpp" "E:/Work/Program/code/c_c++/lesson/Maze/build/CMakeFiles/cmake-test.dir/Src/LS.cpp.obj"
-  "E:/Work/Program/code/c_c++/lesson/Maze/Src/M.cpp" "E:/Work/Program/code/c_c++/lesson/Maze/build/CMakeFiles/cmake-test.dir/Src/M.cpp.obj"
-  "E:/Work/Program/code/c_c++/lesson/Maze/Src/main.cpp" "E:/Work/Program/code/c_c++/lesson/Maze/build/CMakeFiles/cmake-test.dir/Src/main.cpp.obj"
+  "W:/code/c_c++/lesson/Maze/Src/LS.cpp" "W:/code/c_c++/lesson/Maze/build/CMakeFiles/cmake-test.dir/Src/LS.cpp.obj"
+  "W:/code/c_c++/lesson/Maze/Src/M.cpp" "W:/code/c_c++/lesson/Maze/build/CMakeFiles/cmake-test.dir/Src/M.cpp.obj"
+  "W:/code/c_c++/lesson/Maze/Src/main.cpp" "W:/code/c_c++/lesson/Maze/build/CMakeFiles/cmake-test.dir/Src/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

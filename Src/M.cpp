@@ -26,11 +26,9 @@ void Maze::create()
         cout << "Please enter the maze's length(m), width(n) (0 < m, n < " << MAXSIZE - 5 << "):";
         cin >> m >> n;
         if (m <= 0 || m >= MAXSIZE - 5 || n <= 0 || n >= MAXSIZE - 5)
-        {
-            cin.ignore(numeric_limits<std::streamsize>::max(), '\n'); //清除输入缓冲区的当前行
             cout << "Invalid number! Please enter the line again.\n"
                  << endl;
-        }
+
         else
             break;
     }
@@ -112,7 +110,7 @@ bool Maze::enterCoordinate(string str, Coordinate &coo)
     cout << "Please enter the " << str << "(0 < x <= " << n << ", 0 < y <= " << m << "):";
     cin >> coo.x >> coo.y;
 
-    if (coo.x <= 0 || coo.x > n || coo.y <= 0 || coo.y > m) //不合法
+    if (coo.x <= 0 || coo.x > n || coo.y <= 0 || coo.y > m) //越界
         return 0;
 
     if (map[coo.x][coo.y] == 1) //堵路
